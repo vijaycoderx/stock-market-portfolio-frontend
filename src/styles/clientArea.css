@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .trade{
+        @apply text-xl bg-[red] flex justify-center h-[20vh] items-center;
+    }
+    
+}
