@@ -4,7 +4,11 @@ import "../styles/clientArea.css"
 const Client = () => {
 
   return (
-    <div className='trade'>trade</div>
+    <div className='root-con'>
+      <div className='holder'>
+
+      </div>
+    </div>
   )
 }
 

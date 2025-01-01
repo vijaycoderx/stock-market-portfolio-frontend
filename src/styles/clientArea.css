@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 @layer components{
-    .trade{
-        @apply text-xl bg-[red] flex justify-center h-[20vh] items-center;
+
+    .root-con{
+        @apply h-[50px] bg-[violet] max-h-[60px] lg:h-[60px] ;
     }
     
 }
