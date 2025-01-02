@@ -5,7 +5,31 @@
 @layer components{
 
     .root-con{
-        @apply h-[50px] bg-[violet] max-h-[60px] lg:h-[60px] ;
+        @apply h-[100vh] bg-[#ffffff];
+    }
+
+    .holder{
+        @apply h-full bg-[#ffffff] 
+    }
+
+    .nav-holder{
+        @apply max-h-[50px] bg-[#3a164f] h-[50px] bg-[#ffffff] border-b-[2px] border-gray-300 box-border
+    }
+
+    .main-holder{
+        @apply h-[calc(100vh-50px)] bg-[#ffffff] box-border 
+    }
+
+    .root-con .holder .main-holder .side-main-holder{
+        @apply bg-[#ffffff] h-[calc(100vh-50px)] box-border mx-4 flex items-center
+    }
+
+    .side-main-holder .side-menu-holder{
+        @apply w-[20vw] bg-[#ffffff] h-[calc(100vh-50px)] box-border border-r-[2px] border-gray-300 box-border
+    }
+
+    .side-main-holder .main-content-holder{
+        @apply bg-[#ffffff] w-[calc(100%-20vw)] h-[calc(100vh-50px)] box-border
     }
     
 }

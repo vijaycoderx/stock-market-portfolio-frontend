@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .menu-cover-con{
+        @apply bg-[#ffffff] h-full flex flex-col justify-start text-lg box-border px-4 gap-y-16 block absolute top-[50px]  w-full lg:hidden ;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-weight: bolder;
+        
+    }
+
+    .menu-cover-con .first-unorder{
+        @apply bg-[#ffffff] flex flex-col justify-start items-start box-border  gap-y-8;
+    }
+    .menu-cover-con .first-unorder li{
+        @apply w-full
+    }
+    .menu-cover-con .first-unorder li hr{
+        @apply border-0 border-t-[1px]
+        /* border: 0;
+        border-top: 20px solid red; */
+    }
+
+    .menu-cover-con .btn-holder{
+        @apply  h-[50px] border-black border-[2px] rounded-md flex justify-center items-center
+    }
+    /* .side-menu-con .btn-holder */
+}

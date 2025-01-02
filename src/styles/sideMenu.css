@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .side-menu-con{
+        @apply h-[100%] w-full bg-[#ffffff] box-border flex flex-col justify-between items-start ;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-weight: bolder;
+    }
+    /* .side-menu-con{
+        @apply bg-[#f15c5c] h-full flex flex-col justify-start text-lg box-border px-4 gap-y-16 block absolute top-[50px] w-full ;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-weight: bolder;
+        
+    }*/
+
+    .side-menu-con .first-unorder{
+        @apply bg-[#ffffff] flex flex-col justify-start items-start box-border h-[80%] w-full gap-y-5;
+    }
+    .side-menu-con .second-unorder{
+        @apply bg-[#ffffff] flex flex-col justify-start items-start box-border h-[20%] gap-y-4 w-full;
+    }
+    .side-menu-con .first-unorder li{
+        @apply w-full
+    }
+    .side-menu-con .first-unorder li hr{
+        @apply border-0 border-t-[2px]
+        
+    } 
+
+    .side-menu-con .second-unorder li{
+        @apply w-full
+    }
+    .side-menu-con .second-unorder li hr{
+        @apply border-0 border-t-[2px]
+        
+    } 
+
+
+    .side-menu-con .menu-item{
+        @apply bg-[#ffffff] w-full h-[50px] rounded-3xl flex justify-start items-center px-2 box-border hover:bg-[#d1eef8]
+    }
+    .side-menu-con .menu-item .icon{
+        @apply text-gray-500 flex justify-center items-center mr-1 hover:text-black;
+        font-weight: bolder;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .side-menu-con .menu-item .menu-item-text{
+        @apply  flex justify-center items-center
+    }
+}

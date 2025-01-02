@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home"
 import Auth from './pages/Auth';
-import Client from './pages/ClientArea';
+import Client from './pages/Client';
 import Error from './pages/Error';
 
 function App() {

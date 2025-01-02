@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .top-nav-bar{
+        @apply   bg-[#ffffff] h-full flex justify-between items-center box-border mx-4 ;
+    }
+    .brand{
+        @apply  box-border h-[100%]  w-[50px] box-border  flex justify-center items-center flex-col;
+    }
+    .brand img{
+        @apply h-[90%] 
+    }
+    .brand .desc{
+        @apply text-sm
+    }
+    .alert-menu-btn-con{
+        @apply flex justify-center items-center box-border  h-[100%]
+    }
+
+    .alert-menu-btn-con .menu-btn{
+        @apply  h-[100%] flex justify-center items-center md:hidden
+    }
+    .alert-menu-btn-con .menu-btn .ele{
+        @apply text-2xl ml-1
+    }
+
+    .alert-menu-btn-con .alert .ele{
+        @apply text-xl
+    }
+}
