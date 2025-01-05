@@ -18,7 +18,7 @@ const SideMenu = () => {
           <li className='mt-8'>
             <div className='menu-item'>
               <div className='icon'>
-                <LuLayoutDashboard />
+                <LuLayoutDashboard style={{fontSize: "18px"}}/>
               </div>
               <div className='menu-item-text'>
                 Dashboard
@@ -29,7 +29,7 @@ const SideMenu = () => {
           <li>
             <div className='menu-item'>
               <div className='icon'>
-                <BiDollarCircle />
+                <BiDollarCircle style={{fontSize: "20px"}} />
               </div>
               <div className='menu-item-text'>
                 Assets
@@ -40,7 +40,7 @@ const SideMenu = () => {
           <li>
             <div className='menu-item'>
             <div className='icon'>
-                <RiStockLine />
+                <RiStockLine style={{fontSize: "20px"}} />
               </div>
               <div className='menu-item-text'>
                 Trade
@@ -51,7 +51,7 @@ const SideMenu = () => {
           <li>
             <div className='menu-item'>
               <div className='icon'>
-                <FaRegStar />
+                <FaRegStar style={{fontSize: "20px"}} />
               </div>
               <div className='menu-item-text'>
                 Watchlist
@@ -62,7 +62,7 @@ const SideMenu = () => {
           <li>
             <div className='menu-item'>
                 <div className='icon'>
-                  <MdHistory />
+                  <MdHistory style={{fontSize: "20px"}} />
                 </div>
               <div className='menu-item-text'>
                 History
@@ -74,7 +74,7 @@ const SideMenu = () => {
           <li>
             <div className='menu-item'>
               <div className='icon'>
-                <IoSettingsOutline />
+                <IoSettingsOutline style={{fontSize: "20px"}} />
               </div>
               <div className='menu-item-text'>
                 Settings
@@ -88,7 +88,7 @@ const SideMenu = () => {
           <li>
             <div className='menu-item'>
               <div className='icon'>
-                <IoHelpCircleOutline />
+                <IoHelpCircleOutline style={{fontSize: "20px"}} />
               </div>
               
               <div className='menu-item-text'>
@@ -102,7 +102,7 @@ const SideMenu = () => {
           <li>
             <div className='menu-item'>
                 <div className='icon'>
-                  <CgLogOut />
+                  <CgLogOut style={{fontSize: "20px"}} />
                 </div>
               <div className='menu-item-text'>
                 Log out

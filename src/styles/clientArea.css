@@ -13,7 +13,8 @@
     }
 
     .nav-holder{
-        @apply max-h-[50px] bg-[#3a164f] h-[50px] bg-[#ffffff] border-b-[2px] border-gray-300 box-border
+        @apply max-h-[50px] bg-[#3a164f] h-[50px] bg-[#ffffff]  border-gray-300 box-border;
+        /* border-b-[1px] */
     }
 
     .main-holder{
@@ -21,15 +22,22 @@
     }
 
     .root-con .holder .main-holder .side-main-holder{
-        @apply bg-[#ffffff] h-[calc(100vh-50px)] box-border mx-4 flex items-center
+        @apply bg-[#40fa36] h-[calc(100vh-50px)] box-border mx-4 flex items-center
     }
 
     .side-main-holder .side-menu-holder{
-        @apply w-[20vw] bg-[#ffffff] h-[calc(100vh-50px)] box-border border-r-[2px] border-gray-300 box-border
+        @apply w-[15vw] bg-[#ff4f4f] h-[calc(100vh-50px)] box-border  border-gray-300 box-border;
+        /* border-r-[1px] */
+        /* need to keep 20vw */
     }
 
     .side-main-holder .main-content-holder{
-        @apply bg-[#ffffff] w-[calc(100%-20vw)] h-[calc(100vh-50px)] box-border
+        @apply bg-[#d9f43c]  h-[calc(100vh-50px)] box-border flex flex-1;
+        /* w-[calc(100%-20vw)] */
+    }
+
+    .content-holder{
+        @apply h-full bg-[#ffffff] flex flex-1
     }
     
 }

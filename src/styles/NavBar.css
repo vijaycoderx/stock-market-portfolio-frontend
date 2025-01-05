@@ -4,7 +4,8 @@
 
 @layer components{
     .top-nav-bar{
-        @apply   bg-[#ffffff] h-full flex justify-between items-center box-border mx-4 ;
+        @apply   bg-[#ffffff] h-full flex justify-between items-center box-border mx-4 border-b-[1px];
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
     }
     .brand{
         @apply  box-border h-[100%]  w-[50px] box-border  flex justify-center items-center flex-col;

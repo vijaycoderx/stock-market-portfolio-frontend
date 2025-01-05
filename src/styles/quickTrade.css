@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .quick-trade-holder{
+        @apply  flex flex-col  w-full  justify-around items-center gap-y-3 flex-1 box-border px-4
+    }
+    .buy-sell-holder{
+        @apply  flex flex-col justify-evenly items-baseline w-full h-full bg-[#ffffff]
+    }
+    .btn-wrapper{
+        @apply flex justify-start items-center gap-x-2 bg-[#ffffff] w-full
+    }
+    .buy-btn{
+        @apply rounded-xl border-0 bg-[lightgreen] w-[120px] h-[50px] flex justify-center items-center flex-1
+    }
+    .sell-btn{
+        @apply rounded-xl border-0 bg-[#ff4848] w-[120px] h-[50px] flex justify-center items-center flex-1
+    }
+    
+}

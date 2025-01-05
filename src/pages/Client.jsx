@@ -3,6 +3,8 @@ import "../styles/clientArea.css"
 import NavBar from "../components/NavBar"
 import SideMenu from '../components/SideMenu'
 import MenuCover from '../components/MenuCover'
+import Dashboard from '../components/Dashboard'
+import Assets from '../components/Assets'
 
 const Client = () => {
 
@@ -21,7 +23,10 @@ const Client = () => {
             </div>
 
             <div className='main-content-holder'>
-              hi
+              <div className='content-holder'>
+                <Dashboard />
+                {/* <Assets /> */}
+              </div>
             </div>
           </div>
           

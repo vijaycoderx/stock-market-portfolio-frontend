@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components{
+    .dashboard-holder{
+        @apply flex justify-normal items-center h-full;
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
+    }
+    .analytics{
+        @apply h-full bg-[#fff] w-[80%] flex flex-col box-border border-r-[1px]
+    }
+    .user-profile{
+        @apply h-full bg-[#ffffff] min-w-max w-[20%] flex flex-col 
+    }
+    .analytics .menu-title{
+        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border px-8 border-b-[1px];
+        font-size: xx-large;
+        font-weight: 600;
+    }
+    .analytics .menu-content{
+        @apply flex flex-col flex-1 bg-[#ffffff] 
+    }
+
+    .analytics .overview-holder{
+        @apply flex h-[70px] bg-[#ffffff] justify-between items-center box-border px-8 mt-2
+    }
+    .analytics .overview-holder .assets-card{
+        @apply h-full bg-[#ffffff] rounded-xl border-0 w-[20%] flex flex-col justify-start items-start box-border px-4 py-1 border-[2px] border-blue-600 
+    }
+
+    .analytics .overview-holder .assets-card .asset-sym-value-holder{
+        @apply flex justify-start items-center box-border bg-[#ffffff] text-xl font-bold;
+    }
+
+    .analytics .visual-analysis-holder{
+        @apply flex h-[300px] bg-[#ffffff] justify-between items-center box-border px-8 mt-2
+    }
+    .analytics .charts-holder{
+        @apply flex bg-[#ffffff] justify-between items-center box-border  w-full h-full
+    }
+    .analytics .charts-holder .chart-1, .chart-2{
+        @apply bg-[#ffffff] h-full w-[45%] m-0 p-0
+    }
+
+    .analytics .trending-holder{
+        @apply flex flex-1 flex-col bg-[#ffffff] justify-start items-start box-border px-8 mt-2
+    }
+    .analytics .trending-holder .title-holder{
+        @apply bg-[#ffffff] text-xl font-bold w-full ;
+    }
+    .analytics .trending-holder .stocks-holder{
+        @apply   text-gray-600 w-full
+    }
+
+    
+}

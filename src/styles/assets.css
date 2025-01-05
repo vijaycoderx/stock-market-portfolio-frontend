@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .dashboard-holder{
+        @apply bg-[red] flex flex-1
+    }
+}

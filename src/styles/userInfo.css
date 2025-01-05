@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components{
+    .user-info-holder{
+        @apply w-full bg-[#ffffff] flex flex-col justify-start h-[80%] items-center;
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
+    }
+    .user-info-holder .user-holder{
+        @apply bg-[#ffffff] mt-8 text-center
+    }
+    .user-info-holder .user-holder .userid{
+        @apply mt-2
+    }
+
+    .top-stocks{
+        @apply flex flex-col bg-[#ffffff] w-full mt-4 justify-start items-center gap-y-3 flex-1 overflow-hidden
+    }
+    .top-stocks .top-title{
+        @apply text-lg font-medium bg-[#ffffff]
+    }
+    .list-stocks{
+        @apply flex flex-col bg-[#ffffff] w-full  justify-around items-center gap-y-3 flex-1 overflow-hidden
+    }
+    .top-stocks .each-stock{
+        @apply flex w-full justify-between box-border px-4 font-normal
+    }
+}

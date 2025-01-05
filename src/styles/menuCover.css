@@ -7,6 +7,7 @@
         @apply bg-[#ffffff] h-full flex flex-col justify-start text-lg box-border px-4 gap-y-16 block absolute top-[50px]  w-full lg:hidden ;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
         font-weight: bolder;
         
     }
