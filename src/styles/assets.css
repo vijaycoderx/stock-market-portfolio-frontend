@@ -3,7 +3,55 @@
 @tailwind utilities;
 
 @layer components{
-    .dashboard-holder{
-        @apply bg-[red] flex flex-1
+    .assets-holder{
+        @apply bg-[red] flex flex-1;
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
     }
+    .assets-holder .assets-content{
+        @apply bg-[#ffffff] flex flex-1 flex-col
+    }
+
+    .assets-holder .menu-title{
+        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border px-8 border-b-[1px];
+        font-size: xx-large;
+        font-weight: 600;
+    }
+
+    .assets-holder .assets-fiat-stock-holder{
+        @apply flex h-[300px] bg-[#ffffff] justify-start items-start box-border px-8 mt-2 flex-col
+    }
+
+    .fiat-holder{
+        @apply bg-[#ffffff] flex w-full gap-x-4 justify-between items-center
+    }
+    .fiat-holder .fiat-holder-title{
+        @apply text-xl bg-[white];
+        /* font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei"; */
+    }
+    .fiat-holder .asset-sym-value-holder{
+        @apply bg-[#ffffff] flex  font-semibold
+    }
+    .fiat-holder .deposit-withdraw-holder{
+        @apply flex justify-start items-center
+    }
+
+    .fiat-holder .deposit-withdraw-holder{
+        @apply bg-[white] flex justify-between items-center  gap-x-4
+    }
+    .fiat-holder .deposit-withdraw-holder .deposit{
+        @apply rounded-full border-0 bg-[lightgreen]  w-[120px] h-[50px] flex justify-center items-center font-semibold
+    }
+    .fiat-holder .deposit-withdraw-holder .withdraw{
+        @apply rounded-full border-0 bg-[#ff4848] w-[120px] h-[50px] flex justify-center font-semibold items-center
+    }
+
+
+    .stock-holder{
+        @apply text-xl mt-16 box-border w-full
+    }
+    .stock-holder .stocks-list-holder{
+        @apply font-semibold bg-[#ffffff] w-full
+    }
+
+    
 }

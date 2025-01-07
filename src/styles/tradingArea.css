@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components{
+    .trade-holder{
+        @apply bg-[red] flex flex-1;
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
+    }
+    .trade-holder .trade-content{
+        @apply bg-[yellow] flex flex-1 flex-col
+    }
+    .trade-content .menu-title{
+        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border px-8 border-b-[1px];
+        font-size: xx-large;
+        font-weight: 600;
+    }
+
+    .trade-content .chart-buy-sell-holder{
+        @apply bg-[blue] flex flex-col
+    }
+    .chart-buy-sell-holder .stock-bar{
+        @apply h-[50px] px-8 mt-2 flex items-center bg-[red] gap-x-4
+    }
+    .stock-bar .ticker{
+        @apply border-0 outline-none rounded-md h-[40px] text-lg
+    }
+
+    .stock-bar .price-wrapper{
+        @apply box-border w-auto flex items-center
+    }
+    .stock-bar .low-high-wrapper{
+        @apply flex items-center text-[12px] gap-x-4 font-bold
+    }
+}

@@ -5,6 +5,7 @@ import SideMenu from '../components/SideMenu'
 import MenuCover from '../components/MenuCover'
 import Dashboard from '../components/Dashboard'
 import Assets from '../components/Assets'
+import TradingArea from '../components/TradingArea'
 
 const Client = () => {
 
@@ -24,8 +25,9 @@ const Client = () => {
 
             <div className='main-content-holder'>
               <div className='content-holder'>
-                <Dashboard />
+                {/* <Dashboard /> */}
                 {/* <Assets /> */}
+                <TradingArea />
               </div>
             </div>
           </div>
