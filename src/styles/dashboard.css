@@ -4,7 +4,7 @@
 
 @layer components{
     .dashboard-holder{
-        @apply flex justify-normal items-center h-full;
+        @apply flex justify-normal items-center h-full flex-1;
         font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
     }
     .analytics{

@@ -17,19 +17,97 @@
     }
 
     .trade-content .chart-buy-sell-holder{
-        @apply bg-[blue] flex flex-col
+        @apply bg-[#ffffff] flex flex-col flex-1
     }
     .chart-buy-sell-holder .stock-bar{
-        @apply h-[50px] px-8 mt-2 flex items-center bg-[red] gap-x-4
+        /* mt-2 */
+        @apply h-[50px] px-8  flex items-center bg-[rgb(255,255,255)] gap-x-4 box-border border-b-[1px]
     }
+    
     .stock-bar .ticker{
-        @apply border-0 outline-none rounded-md h-[40px] text-lg
+        @apply border-0 outline-none rounded-md h-[30px] text-lg
     }
 
     .stock-bar .price-wrapper{
         @apply box-border w-auto flex items-center
     }
     .stock-bar .low-high-wrapper{
-        @apply flex items-center text-[12px] gap-x-4 font-bold
+        @apply flex items-center text-[10px] gap-x-4 font-bold
     }
+
+    .stock-bar .time-period{
+        @apply flex items-center gap-x-4 bg-[#ffffff] h-[40px]
+    }
+    .stock-bar .time-period .t-item{
+        @apply bg-[#f3f3f3] rounded-md px-2
+    }
+
+    .stock-bar .search-bar-holder{
+        @apply bg-yellow-300 h-[40px] flex items-center  justify-start relative flex-col flex-1
+    }
+    .stock-bar .search-stocks-holder{
+        @apply bg-[lightgreen] absolute mt-[50px] box-border w-full
+    }
+    .stock-bar .search-bar-holder input{
+        @apply bg-[#ffffff] h-[100px] w-full box-border border-2 px-1
+    }
+
+    .stock-chart{
+        @apply bg-[violet] flex flex-1 mt-2
+    }
+    .stock-chart .chart-graph{
+        @apply w-[75%] bg-[#ffffff]
+    }
+    .stock-chart .stock-trade{
+        @apply flex flex-1 bg-[#ffffff] flex-col  border-l-[1px] px-2
+    }
+    
+    .stock-trade .stock-market-holder{
+        @apply bg-[#efacac] rounded-md flex flex-col items-start justify-start
+    }
+    .stock-trade .buy-sell-holder{
+        @apply flex bg-[#ffffff] flex-row h-[40px] justify-between items-center
+    }
+    .stock-trade .buy-sell-holder .buy-stock{
+        @apply bg-[lightgreen] rounded-full flex justify-center items-center w-[40%] h-[40px]
+    }
+    .stock-trade .buy-sell-holder .sell-stock{
+        @apply bg-[#f44a4a] rounded-full flex justify-center items-center w-[40%] h-[40px]
+    }
+    .stock-chart .stock-trade .buy-sell-config-holder{
+        @apply flex flex-col w-full items-center bg-[#ffffff]
+    }
+    .buy-sell-config-holder .as-balance{
+        @apply flex justify-between items-center w-full bg-[#ffffff]  mt-2 
+    }
+    .buy-sell-config-holder .set-price{
+        @apply bg-[#ffffff] flex box-border  w-full mb-2 items-center justify-center
+    }
+    .buy-sell-config-holder .ele-holder{
+        @apply bg-[#ffffff] flex items-center justify-between w-[100%] rounded-md box-border px-2 h-[45px]  border-2
+    }
+    .buy-sell-config-holder .ele-holder .price-curr-holder{
+        @apply w-[90%] bg-[#ffffff] h-[95%] flex justify-start items-center gap-x-1
+    }
+    .ele-holder .price-curr-holder input{
+        @apply w-[80%] h-[90%] outline-none
+    }
+
+    .buy-sell-config-holder .amount-of-bal{
+        @apply bg-[#ffffff] mt-4 w-full
+    }
+    .amount-of-bal .amount-vol-holder{
+        @apply flex items-center gap-x-2 justify-between bg-[#ffffff] mb-2
+    }
+    .amount-of-bal .amount-vol-holder .per-btn{
+        @apply  rounded px-1  w-[50px]
+        /* bg-[lightgreen] */
+    }
+
+    .order-btn{
+        @apply rounded-full px-4 bg-[lightblue] h-[35px] flex justify-center items-center mt-4
+    }
+    /* .arrow-holder{
+        @apply bg-red-300 text-white
+    } */
 }

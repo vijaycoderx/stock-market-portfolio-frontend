@@ -45,7 +45,7 @@
 
 
     .side-menu-con .menu-item{
-        @apply bg-[#ffffff] w-full h-[50px] rounded-3xl flex justify-start items-center px-2 box-border hover:bg-[#d1eef8]
+        @apply  w-full h-[50px] rounded-3xl flex justify-start items-center px-2 box-border hover:bg-[#d1eef8]
     }
     .side-menu-con .menu-item .icon{
         @apply text-gray-600 flex justify-center items-center mr-1 hover:text-black;

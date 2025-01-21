@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components{
+    .settings-holder{
+        @apply flex justify-normal items-center h-full flex-1;
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
+    }
+    .settings{
+        @apply h-full bg-[#fff] w-full flex flex-col box-border 
+    }
+
+    .settings .menu-title{
+        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border px-8 border-b-[1px];
+        font-size: xx-large;
+        font-weight: 600;
+    }
+
+    .settings .settings-content{
+        @apply flex flex-col flex-1 bg-[#ffffff] px-8 box-border
+    }
+
+    .settings-content form{
+        @apply flex flex-col  bg-[white]
+    }
+    .settings-content form select{
+        @apply w-[130px] text-gray-500 
+    }
+    .item-wrapper  option{
+        @apply text-gray-500 
+    }
+    .item-wrapper{
+        @apply flex items-center my-2 gap-x-2 w-auto
+    }
+}

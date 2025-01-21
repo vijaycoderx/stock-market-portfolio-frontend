@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components{
+    .history-holder{
+        @apply flex justify-normal items-center h-full flex-1;
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
+    }
+    .history{
+        @apply h-full bg-[#fff] w-full flex flex-col box-border 
+    }
+
+    .history .menu-title{
+        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border px-8 border-b-[1px];
+        font-size: xx-large;
+        font-weight: 600;
+    }
+}

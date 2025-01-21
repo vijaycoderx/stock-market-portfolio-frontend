@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .auth-con{
+        @apply bg-[white] w-[100vw] h-[100vh] flex justify-center items-center;
+        font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
+    }
+    .form-con{
+        @apply border-2 border-black bg-[#ffffff] flex items-center flex-col rounded w-[20%] box-border gap-y-2 py-2
+    }
+    .auth-title{
+        @apply text-3xl mb-2
+    }
+    .auth-form{
+        @apply flex flex-col gap-y-1 bg-[#ffffff] w-[90%]
+    }
+    .form-con input{
+        @apply text-xl h-[45px] outline-none border-2 box-border rounded
+    }
+    .signup-btn{
+        @apply bg-[lightgreen] rounded-lg
+    }
+    .auth-label{
+        @apply text-[lightblue] underline
+    }
+    .auth-warning{
+        @apply text-red-600 text-sm
+    }
+    
+}

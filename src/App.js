@@ -6,6 +6,7 @@ import Auth from './pages/Auth';
 import Client from './pages/Client';
 import Error from './pages/Error';
 
+
 function App() {
   return (
     <BrowserRouter>
