@@ -12,13 +12,13 @@
     }
 
     .settings .menu-title{
-        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border px-8 border-b-[1px];
+        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border  border-b-[1px] lg:px-8;
         font-size: xx-large;
         font-weight: 600;
     }
 
     .settings .settings-content{
-        @apply flex flex-col flex-1 bg-[#ffffff] px-8 box-border
+        @apply flex flex-col flex-1 bg-[#ffffff]  box-border lg:px-8
     }
 
     .settings-content form{

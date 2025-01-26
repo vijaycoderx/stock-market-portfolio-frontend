@@ -26,7 +26,7 @@
     }
 
     .side-main-holder .side-menu-holder{
-        @apply w-[15vw] bg-[#ff4f4f] h-[calc(100vh-50px)]  border-gray-300 box-border;
+        @apply w-[15vw] bg-[#8257f1] h-[calc(100vh-50px)]  border-gray-300 box-border lg:block hidden;
         /* border-r-[1px] */
         /* need to keep 20vw */
     }

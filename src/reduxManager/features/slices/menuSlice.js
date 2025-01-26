@@ -11,9 +11,17 @@ export const menuSlice = createSlice({
             state.menuOptionSelected = action.payload
         },
 
+        selectMenuType: (state, action) => {
+            state.platform = action.payload
+        },
+        menuToggleSelection: (state, action) => {
+            state.menuToggle = action.payload
+        },
+
+
     }
 })
 
-export const { selectMenuOption } = menuSlice.actions
+export const { selectMenuOption, selectMenuType, menuToggleSelection} = menuSlice.actions
 
 export default menuSlice.reducer

@@ -4,7 +4,7 @@
 
 @layer components{
     .user-info-holder{
-        @apply w-full bg-[#ffffff] flex flex-col justify-start h-[80%] items-center;
+        @apply w-full bg-[#ffffff] flex flex-col justify-start h-[80%] items-center box-border;
         font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
     }
     .user-info-holder .user-holder{
@@ -18,12 +18,14 @@
         @apply flex flex-col bg-[#ffffff] w-full mt-4 justify-start items-center gap-y-3 flex-1 overflow-hidden
     }
     .top-stocks .top-title{
-        @apply text-lg font-medium bg-[#ffffff]
+        @apply text-lg font-medium bg-[#ffffff] w-full box-border  flex justify-center items-center h-[40px] box-border
     }
     .list-stocks{
-        @apply flex flex-col bg-[#ffffff] w-full  justify-around items-center gap-y-3 flex-1 overflow-hidden
+        @apply flex flex-col bg-[#ffffff] w-full  justify-around items-center gap-y-2 flex-1 overflow-hidden
     }
     .top-stocks .each-stock{
-        @apply flex w-full justify-between box-border px-4 font-normal
+        @apply flex w-full justify-between box-border  font-normal
     }
+
+
 }

@@ -12,13 +12,13 @@
     }
 
     .assets-holder .menu-title{
-        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border px-8 border-b-[1px];
+        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border  border-b-[1px] lg:px-8;
         font-size: xx-large;
         font-weight: 600;
     }
 
     .assets-holder .assets-fiat-stock-holder{
-        @apply flex h-[300px] bg-[#ffffff] justify-start items-start box-border px-8 mt-2 flex-col
+        @apply flex h-[300px] bg-[#ffffff] justify-start items-start box-border  mt-2 flex-col lg:px-8
     }
 
     .fiat-holder{

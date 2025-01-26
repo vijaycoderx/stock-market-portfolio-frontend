@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/tradingArea.css'
 
+
 import { FaStar } from "react-icons/fa";
 
 import { generateGraph } from '../services/chartService';
 
-import { getHistoricalData } from '../services/stockService';
+import { addFav, buyStock, getHistoricalData, sellStock } from '../services/stockService';
 import { GiRank3 } from 'react-icons/gi';
 
 import { BiSolidUpArrow } from "react-icons/bi";
@@ -13,10 +14,27 @@ import { BiSolidDownArrow } from "react-icons/bi";
 
 import { getStockSymbols } from '../constants.js/stockSymbols';
 import { TimeRange } from '../constants.js/timeRangeConstants';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { readJWT } from '../services/jwtUtils';
+import { setUserInfo } from '../reduxManager/features/slices/userSlice';
+import axios from 'axios';
 // import yahooFinance from 'yahoo-finance2';
 
 const TradingArea = () => {
+
+    const fetchUpdatedUserData = async () => {
+        const userSessionData = readJWT(localStorage.getItem('session_token'))
+        const endpoint = `${process.env.REACT_APP_SERVER_URL}/user/${userSessionData.username}`
+        console.log("end", endpoint)
+        const response = await axios.get(endpoint)
+        console.log("resxxxxxxxxxxxxxxxxxxx", response.data)
+        dispatch(setUserInfo(response.data))
+        if (response) {
+            
+            return response.data
+        }
+        
+    }
 
     const [graph, setgraph] = useState();
     const [searchbar, setSearchbar] = useState();
@@ -36,17 +54,23 @@ const TradingArea = () => {
         portion: 0.0,
         portionColor: "lightgreen",
         stockQuantity: 0,
-        stockAmount: 0,
+        accountBalance: 0,
         stockAmountValue: 0,
         stockQuantityValue: 0,
     })
 
     // const [stockPrice, setStockPrice] = useState(0)
+    // const [updateBal, setUpdateBal] = useState(false)
+
+    const dispatch = useDispatch()
     const fiatSelector = useSelector((state) => state.user.userInfo.account.fiatAccount.amount)
     const stocksSelector = useSelector((state) => state.user.userInfo.account.stockAccount)
+    // const updatedFiatSelector = useSelector((state) => updateBal ? state.user.userInfo.account.fiatAccount.amount : "hex")
+
+    
     const stockSymbolsList = getStockSymbols()
     
-    
+    // setTrade({...trade, accountBalance: fiatSelector})
     const findStocks = (stockText) => {
         let filtered
         if (stockText == "") {
@@ -75,6 +99,9 @@ const TradingArea = () => {
         console.log("Stock not found:", stock.ticker);
         return 0;
     }
+    // useEffect(() => {
+        
+    // }, [fiatSelector])
     
     useEffect(() => {
         console.log("hi1")
@@ -129,7 +156,7 @@ const TradingArea = () => {
 
                 setSelectedStock({ ...selectedStock, stockPrice: stockHistoricalData.data.stockPrice, high: stockHistoricalData.data.stockPriceHigh, low: stockHistoricalData.data.stockPriceLow })
                 // console.log("000000000000000iiii", getCurrentStockQuantity({ticker: selectedStock.ticker}), "0000000000iii", selectedStock.ticker)
-                setTrade({...trade, stockAmount: fiatSelector, stockQuantity: getCurrentStockQuantity({ticker: selectedStock.ticker})})
+                setTrade({...trade, accountBalance: fiatSelector, stockQuantity: getCurrentStockQuantity({ticker: selectedStock.ticker})})
                 
 
                 console.log("history", stockHistoricalData)
@@ -155,7 +182,8 @@ const TradingArea = () => {
             <div key={key} onClick={() => {
                 setSearchbarOptions([])
                 setSearchbar("")
-                setSelectedStock({...selectedStock, ticker: item})
+                setSelectedStock({ ...selectedStock, ticker: item })
+                
             }}>{item}</div>
         )
     })
@@ -184,7 +212,7 @@ const TradingArea = () => {
     // }
     
     // const calAmount = (p) => {
-    //     const percentageAmount = (trade.stockAmount * p).toFixed(2)
+    //     const percentageAmount = (trade.accountBalance * p).toFixed(2)
     //     const percentageStock = (trade.stockQuantity * p).toFixed(2)
     //     if (trade.selectedOperation == "buy") {
             
@@ -197,7 +225,7 @@ const TradingArea = () => {
     //     }
     // }
     // const calQuantity = (p) => {
-    //     const percentageAmount = (trade.stockAmount * p).toFixed(2)
+    //     const percentageAmount = (trade.accountBalance * p).toFixed(2)
     //     const percentageStock = (trade.stockQuantity * p).toFixed(2)
 
     //     if (trade.selectedOperation == "buy") {
@@ -206,9 +234,9 @@ const TradingArea = () => {
     //         console.log("quantityb",percentageStock * selectedStock.stockPrice)
     //     }
     // }
-
+    
     const calAmountQuantity = (per) => {
-        const percentageAmount = Math.floor((trade.stockAmount * per) * 100) / 100
+        const percentageAmount = Math.floor((trade.accountBalance * per) * 100) / 100
         const percentageStock = Math.floor((trade.stockQuantity * per) * 100) / 100
 
         if (trade.selectedOperation == "buy") {
@@ -225,11 +253,107 @@ const TradingArea = () => {
 
     console.log("trade state", trade)
 
+    
     const performTrade = async (data) => {
-        if (trade.selectedOperation === "buy") {
-            
-        }else{
+        const sessionToken = localStorage.getItem("session_token")
+        const session_token = readJWT(sessionToken)
+        
+        const username = session_token.username
+        const stockData = {
+            username: username,
+            ticker: selectedStock.ticker,
+            quantity: trade.stockQuantityValue,
+            token: sessionToken,
+            type: trade.selectedOperation
+        }
+        console.log("tradddddddddddddddddddde", stockData,"trade", trade)
 
+        
+        if (trade.selectedOperation === "buy") {
+            const buyStockRes = await buyStock(stockData)
+            if (buyStockRes) {
+                // dispatch(setUserInfo())
+                const stateRefreshRes = await fetchUpdatedUserData()
+                // const fiatSelector = useSelector((state) => state.user.userInfo.account.fiatAccount.amount)
+                // const stocksSelector = useSelector((state) => state.user.userInfo.account.stockAccount)
+                if (stateRefreshRes) {
+                    console.log("buy completed", trade.accountBalance, fiatSelector, "sec", fiatSelector, stateRefreshRes)
+                    
+                    const getCurrentStockQuantityLocal = (stock) => {
+                        const stocksSelector = stateRefreshRes.account.stockAccount
+                        console.log("local", stateRefreshRes.account.stockAccount, stock)
+                        for (let i = 0; i < stocksSelector.length; i++) {
+                            const element = stocksSelector[i];
+                            if (element.ticker === stock.ticker) {
+                                console.log("Element matchedLocal:", element, "QuantityLocal:", element.quantity, "Stock:", stock.ticker);
+                                return element.quantity;
+                            }
+                        }
+                        console.log("Stock not found:", stock.ticker);
+                        return 0;
+                    }
+                    
+                    const updatedStockQuantity = getCurrentStockQuantityLocal({stock: trade.selectedStock})
+
+                    setTrade({...trade, accountBalance: stateRefreshRes.account.fiatAccount.amount, stockAmountValue: 0, stockQuantityValue: 0, stockQuantity: updatedStockQuantity})
+                }
+                
+                // setUpdateBal(true)
+                
+                
+            }
+        } else {
+            
+            const sellStockRes = await sellStock(stockData)
+            console.log("sell res", sellStockRes)
+            if (sellStockRes) {
+                // dispatch(setUserInfo())
+                const stateRefreshRes = await fetchUpdatedUserData()
+                // const fiatSelector = useSelector((state) => state.user.userInfo.account.fiatAccount.amount)
+                // const stocksSelector = useSelector((state) => state.user.userInfo.account.stockAccount)
+                if (stateRefreshRes) {
+                    console.log("sell completed", trade.accountBalance, fiatSelector, "sec", fiatSelector, stateRefreshRes, selectedStock.ticker)
+
+                    const getCurrentStockQuantityLocal = (stock) => {
+                        const stocksSelector = stateRefreshRes.account.stockAccount
+                        console.log("local", stateRefreshRes.account.stockAccount, stock)
+                        for (let i = 0; i < stocksSelector.length; i++) {
+                            const element = stocksSelector[i];
+                            if (element.ticker === stock.ticker) {
+                                console.log("Element matchedLocal:", element, "QuantityLocal:", element.quantity, "Stock:", stock.ticker);
+                                return element.quantity;
+                            }
+                        }
+                        console.log("Stock not found:", stock.ticker);
+                        return 0;
+                    }
+                    const updatedStockQuantity = getCurrentStockQuantityLocal({ticker: selectedStock.ticker})
+
+                    setTrade({...trade, accountBalance: stateRefreshRes.account.fiatAccount.amount, stockAmountValue: 0, stockQuantityValue: 0, stockQuantity: updatedStockQuantity})
+                }
+                
+                // setUpdateBal(true)
+                
+                
+            }
+        }
+
+    }
+
+    const addWishlist = async () => {
+        const sessionToken = localStorage.getItem("session_token")
+        const session_token = readJWT(sessionToken)
+        const username = session_token.username
+        const data = {ticker: selectedStock.ticker, token: sessionToken, username: username}
+        const markFav = await addFav(data)
+        console.log("maaaaaaaaaaaaaaaaaaaaaaaaaaaaaark", markFav)
+        if (markFav) {
+            console.log("performrf add/remove  fav")
+            const stateRefreshRes = await fetchUpdatedUserData()
+
+            if (stateRefreshRes) {
+                console.log("refreshed")
+            }
         }
     }
 
@@ -270,7 +394,10 @@ const TradingArea = () => {
                           </div>
 
                           <div className="watchlist-star">
-                              <FaStar style={{borderColor: "white", backgroundColor: "", color: "gray", fontSize: "28px"}} onClick={() => "On Click change color and update in watchlist"}/>
+                              <FaStar style={{ borderColor: "white", backgroundColor: "", color: "gray", fontSize: "28px" }} onClick={() => {
+                                  addWishlist()
+                                  console.log("On Click change color and update in watchlist")
+                              }}/>
                           </div>
 
                           <div className="time-period">
@@ -324,8 +451,8 @@ const TradingArea = () => {
                               <div className="stock-market-holder">
                                   <div className="buy-sell-holder">
                                       <div className="buy-stock ele-item" onClick={() => {
-                                        //   const stockAmount = getCurrentStockQuantity(selectedStock)
-                                          setTrade({...trade, selectedOperation: "buy", portionColor:"lightgreen", stockAmount: fiatSelector, stockAmountValue: 0, stockQuantityValue: 0})
+                                        //   const accountBalance = getCurrentStockQuantity(selectedStock)
+                                          setTrade({...trade, selectedOperation: "buy", portionColor:"lightgreen", accountBalance: fiatSelector, stockAmountValue: 0, stockQuantityValue: 0})
                                       }}>buy</div>
                                       <div className="sell-stock ele-item" onClick={() => {
                                           const stockQuantity = getCurrentStockQuantity(selectedStock)
@@ -337,7 +464,7 @@ const TradingArea = () => {
 
                                       <div className="as-balance">
                                           <div className="avail">Available</div>
-                                          <div className="avail-val">{trade.selectedOperation === "buy" ? trade.stockAmount : trade.stockQuantity}</div>
+                                          <div className="avail-val">{trade.selectedOperation === "buy" ? trade.accountBalance >= 0 ? (Math.floor(trade.accountBalance * 100))/100 : 0 : parseFloat(trade.stockQuantity) >= 0.001 ? trade.stockQuantity : 0}</div>
                                           {/* {trade.stockQuantity} */}
                                       </div>
                                       <div className="amount-of-bal">
@@ -367,7 +494,9 @@ const TradingArea = () => {
                                       <div className="set-price">
                                           <span className="ele-holder">
                                               <div className="price-curr-holder">
-                                                  <input type="text" placeholder='Stock Quantity' value={trade.stockQuantityValue} />
+                                                  <input type="text" placeholder='Stock Quantity' value={trade.stockQuantityValue} onChange={(e) => {
+                                                      setTrade({...trade, stockQuantityValue: e.target.value})
+                                                  }}/>
                                                   <span className="curr">AAPL</span>
                                                   
                                               </div>
@@ -387,7 +516,9 @@ const TradingArea = () => {
                                       <div className="set-price">
                                           <span className="ele-holder">
                                               <div className="price-curr-holder">
-                                                  <input type="text" placeholder='Amount' value={trade.stockAmountValue} />
+                                                  <input type="text" placeholder='Amount' value={trade.stockAmountValue} onChange={(e) => {
+                                                      setTrade({...trade, stockAmountValue: e.target.value})
+                                                  }}/>
                                                   <span className="curr">USD</span>
                                                   
                                               </div>
@@ -404,7 +535,7 @@ const TradingArea = () => {
                                           
                                       </div>
 
-                                      <div className="order-btn">Order</div>
+                                      <div className="order-btn" onClick={() => performTrade()}>Order</div>
 
                                       
                                               

@@ -21,7 +21,7 @@
     }
 
     .alert-menu-btn-con .menu-btn{
-        @apply  h-[100%] flex justify-center items-center md:hidden
+        @apply  h-[100%] flex justify-center items-center lg:hidden
     }
     .alert-menu-btn-con .menu-btn .ele{
         @apply text-2xl ml-1

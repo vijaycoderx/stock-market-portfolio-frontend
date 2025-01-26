@@ -4,14 +4,14 @@
 
 @layer components{
     .trade-holder{
-        @apply bg-[red] flex flex-1;
+        @apply bg-[red] flex flex-1 w-full box-border;
         font-family: Roboto, "PingFang SC", -apple-system, BlinkMacSystemFont, "Microsoft YaHei";
     }
     .trade-holder .trade-content{
         @apply bg-[yellow] flex flex-1 flex-col
     }
     .trade-content .menu-title{
-        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border px-8 border-b-[1px];
+        @apply h-[14%] bg-[#ffffff] flex justify-start items-center box-border  border-b-[1px] lg:px-8;
         font-size: xx-large;
         font-weight: 600;
     }
@@ -21,49 +21,49 @@
     }
     .chart-buy-sell-holder .stock-bar{
         /* mt-2 */
-        @apply h-[50px] px-8  flex items-center bg-[rgb(255,255,255)] gap-x-4 box-border border-b-[1px]
+        @apply    flex items-center bg-[rgb(255,255,255)] gap-x-4 box-border border-b-[1px] flex-wrap lg:h-[50px] lg:px-8
     }
     
     .stock-bar .ticker{
-        @apply border-0 outline-none rounded-md h-[30px] text-lg
+        @apply border-0 outline-none rounded-md h-[30px] text-lg w-[30%] lg:h-[30px] lg:w-auto
     }
 
     .stock-bar .price-wrapper{
-        @apply box-border w-auto flex items-center
+        @apply box-border w-auto flex items-center w-[20%] lg:w-auto
     }
     .stock-bar .low-high-wrapper{
-        @apply flex items-center text-[10px] gap-x-4 font-bold
+        @apply flex items-center text-[10px] gap-x-4 font-bold w-[20%] lg:w-auto
     }
 
     .stock-bar .time-period{
-        @apply flex items-center gap-x-4 bg-[#ffffff] h-[40px]
+        @apply flex items-center gap-x-4 bg-[#ffffff] h-[40px] w-[100%] lg:w-auto
     }
     .stock-bar .time-period .t-item{
-        @apply bg-[#f3f3f3] rounded-md px-2
+        @apply bg-[#f3f3f3] rounded-md px-2 w-[15%] lg:w-auto
     }
 
     .stock-bar .search-bar-holder{
-        @apply bg-yellow-300 h-[40px] flex items-center  justify-start relative flex-col flex-1
+        @apply bg-yellow-300 h-[40px] flex items-center  justify-start relative flex-col w-[100%] lg:flex-1
     }
     .stock-bar .search-stocks-holder{
-        @apply bg-[lightgreen] absolute mt-[50px] box-border w-full
+        @apply bg-[#4872fa] absolute mt-[50px] box-border w-full text-white
     }
     .stock-bar .search-bar-holder input{
         @apply bg-[#ffffff] h-[100px] w-full box-border border-2 px-1
     }
 
     .stock-chart{
-        @apply bg-[violet] flex flex-1 mt-2
+        @apply bg-[#ffffff] flex flex-1 mt-2 flex-wrap box-border w-full
     }
     .stock-chart .chart-graph{
-        @apply w-[75%] bg-[#ffffff]
+        @apply w-[99%] bg-white lg:w-[75%] lg:px-8 
     }
     .stock-chart .stock-trade{
-        @apply flex flex-1 bg-[#ffffff] flex-col  border-l-[1px] px-2
+        @apply flex flex-1 bg-[#ffffff] flex-col  border-l-[1px] px-2 mt-6 lg:mt-0
     }
     
     .stock-trade .stock-market-holder{
-        @apply bg-[#efacac] rounded-md flex flex-col items-start justify-start
+        @apply bg-[#ffffff] rounded-md flex flex-col items-start justify-start
     }
     .stock-trade .buy-sell-holder{
         @apply flex bg-[#ffffff] flex-row h-[40px] justify-between items-center
@@ -100,12 +100,12 @@
         @apply flex items-center gap-x-2 justify-between bg-[#ffffff] mb-2
     }
     .amount-of-bal .amount-vol-holder .per-btn{
-        @apply  rounded px-1  w-[50px]
+        @apply  rounded px-1 w-[20%] lg:w-[50px]
         /* bg-[lightgreen] */
     }
 
     .order-btn{
-        @apply rounded-full px-4 bg-[lightblue] h-[35px] flex justify-center items-center mt-4
+        @apply rounded-full px-4 bg-[lightblue] h-[35px] flex justify-center items-center mt-4 w-[70%] lg:w-auto
     }
     /* .arrow-holder{
         @apply bg-red-300 text-white

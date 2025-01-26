@@ -4,7 +4,7 @@
 
 @layer components{
     .side-menu-con{
-        @apply h-[100%] w-full bg-[#ffffff] box-border flex flex-col justify-between items-start border-r-[1px] font-semibold text-sm;
+        @apply h-[100%] w-full bg-[#ffffff] box-border flex flex-col justify-between items-start border-r-[1px] font-semibold text-sm hidden lg:block;
         /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         font-weight: bolder; */

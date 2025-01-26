@@ -12,7 +12,7 @@ import { CgLogOut } from "react-icons/cg";
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectMenuOption } from '../reduxManager/features/counter/menuSlice';
+import { selectMenuOption } from '../reduxManager/features/slices/menuSlice';
 
 import { Menu } from '../constants.js/menuConstants';
 import { resetSession } from '../services/sessionManager';
@@ -128,7 +128,7 @@ const SideMenu = () => {
           <li>
             <div className='menu-item' onClick={(e) => {
               resetSession()
-              window.location.href = `${process.env.REACT_APP_CLIENT_URL}/home`
+              window.location.href = `${process.env.REACT_APP_CLIENT_URL}/auth`
             }}>
                 <div className='icon'>
                   <CgLogOut style={{fontSize: "20px"}} />

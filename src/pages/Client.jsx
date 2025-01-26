@@ -11,11 +11,13 @@ import History from '../components/History'
 import Settings from '../components/Settings'
 
 import { Menu } from '../constants.js/menuConstants'
-import { setUserInfo } from '../reduxManager/features/counter/userSlice'
+import { setUserInfo } from '../reduxManager/features/slices/userSlice'
+
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { readJWT } from '../services/jwtUtils'
 
+import { selectMenuType } from '../reduxManager/features/slices/menuSlice'
 const Client = () => {
   console.log("xxyyxx")
 
@@ -24,6 +26,14 @@ const Client = () => {
 
   const userSlection = useSelector((state) => state.user.userInfo)
 
+  // if (window.innerWidth <= 640) {
+  //   dispatch(selectMenuType(true))
+  // }else{
+  //   dispatch(selectMenuType(false))
+  // }
+
+  // const dispatch = useDispatch()
+  const menuToggleSelector = useSelector((state) => state.menu.menuToggle)
   useEffect(() => {
     (async () => {
       const userSessionData = readJWT(localStorage.getItem('session_token'))
@@ -75,7 +85,7 @@ const Client = () => {
           
           {/* <SideMenu /> */}
           
-          <MenuCover />
+          {menuToggleSelector ? <MenuCover /> : ""}
           
         </div>
       </div>
