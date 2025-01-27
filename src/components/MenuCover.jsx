@@ -6,6 +6,7 @@ import {
   selectMenuOption,
 } from "../reduxManager/features/slices/menuSlice";
 import { Menu } from "../constants.js/menuConstants";
+import { resetSession } from '../services/sessionManager';
 // import { menuToggleSelection } from '../reduxManager/features/slices/menuSlice';
 
 const MenuCover = () => {
@@ -112,7 +113,10 @@ const MenuCover = () => {
           </li>
         </ul>
 
-        <div className="btn-holder">
+        <div className="btn-holder" onClick={(e) => {
+              resetSession()
+              window.location.href = `${process.env.REACT_APP_CLIENT_URL}/auth`
+            }}>
           <div>Log out</div>
         </div>
         {/* <ul className='second-unorder'>

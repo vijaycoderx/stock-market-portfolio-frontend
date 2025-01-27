@@ -101,6 +101,10 @@ const sellStock = async (data) => {
 
 }
 
+const getTotalStocks = async (data) => {
+    
+} 
+
 const addFav = async (data) => {
     const token = data.token
     const wishlistData = {ticker: data.ticker, username: data.username}

@@ -109,7 +109,7 @@ const SideMenu = () => {
         </ul>
         
         <ul className='second-unorder'>
-          <li>
+          {/* <li>
             <div className={`menu-item ${menuSelection === Menu.SUPPORT ? 'bg-[#d1eef8]' : 'bg-white'} `} onClick={() => {
                 dispatch(selectMenuOption(Menu.SUPPORT))
               }}>
@@ -121,7 +121,7 @@ const SideMenu = () => {
                 Support
               </div>
             </div>
-          </li>
+          </li> */}
 
           
 

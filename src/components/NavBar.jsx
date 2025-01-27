@@ -36,9 +36,9 @@ const NavBar = () => {
         </div>
 
         <div className='alert-menu-btn-con'>
-          <div className='alert'>
+          {/* <div className='alert'>
               <FaRegBell className='ele'/>
-          </div>
+          </div> */}
                 
           <div className='menu-btn' onClick={() => {
 

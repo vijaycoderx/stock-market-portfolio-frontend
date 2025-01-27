@@ -4,49 +4,19 @@ import axios from "axios";
 import UserInfo from "./UserInfo";
 
 import { Line, Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-  plugins,
-} from "chart.js";
+
 import QuickTrade from "./QuickTrade";
 import { useSelector } from "react-redux";
+import { readJWT } from "../services/jwtUtils";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement
-);
+
 
 const Dashboard = () => {
-  // const data = {
-  //   labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-  //   datasets: [
-  //     {
-  //       label: "steps-A",
-  //       data: [3000, 5000, 4500, 6812, 8820, 7000, 19000],
-  //       borderColor: "red",
-  //     },
-  //     {
-  //       label: "steps-B",
-  //       data: [3500, 6000, 5050, 8000, 1000, 3000, 2000],
-  //       borderColor: "green",
-  //     },
-  //   ],
-  // };
+  
+  // const fiatSelector = useSelector((state) => state.user.userInfo.account.fiatAccount.amount)
+  // const stocksSelector = useSelector((state) => state.user.userInfo.account.stockAccount)
   const userSelector = useSelector((state) => state.user.userInfo);
+  const menuSelection = useSelector((state) => state.menu.menuOptionSelected)
 
   const [userStocks, setUserStocks] = useState([]);
   const [trending, setTrending] = useState([]);
@@ -59,7 +29,7 @@ const Dashboard = () => {
         console.log("SuperSu", userStocks);
       } catch (error) {}
     })();
-  }, [userSelector]);
+  }, [userSelector, userStocks]);
 
   // console.log("userS", userStocks.account)
   useEffect(() => {
@@ -72,7 +42,7 @@ const Dashboard = () => {
 
         const trendingList = response.data.trending.map((item, key) => {
           console.log("each trend item", item.symbol);
-          return <div key={key} className="bg-[#b95af8] w-[40%] rounded-lg h-[40px] px-1">{item.symbol}</div>;
+          return <div key={key} className="bg-[#ffffff] w-[40%] rounded-lg h-[40px] px-1 box-border border-2">{item.symbol}</div>;
         });
         // setTrending([...trending, response.data.trending])
         setTrending(trendingList);
@@ -80,139 +50,44 @@ const Dashboard = () => {
     })();
   }, []);
 
-  // const lineData = {
-  //   labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  //   datasets: [
-  //     {
-  //       label: "fiat",
-  //       data: [3000, 5000, 4500, 6000, 8580, 716, 9000],
-  //       borderColor: "#3535e6dc",
-  //       backgroundColor: "#3535e6dc",
-  //       borderWidth: 2,
-  //       tension: 0.4,
-  //     },
+  const [totalStockAmount, setTotalStockAmount] = useState(0)
 
-  //     {
-  //       label: "trade",
-  //       data: [600, 5050, 4000, 2500, 6080, 756, 9890],
-  //       borderColor: "#52e635dc",
-  //       backgroundColor: "#52e635dc",
-  //       borderWidth: 2,
-  //       tension: 0.4,
-  //     },
-  //   ],
-  // };
+  useEffect(() => {
+    (async() => {
+      try {
+        const sessionToken = localStorage.getItem("session_token")
+        const session_token = readJWT(sessionToken)
+      
+        const username = session_token.username
+        const stockData = {
+            username: username,
+            token: sessionToken,
+        }
 
-  // const pieData = {
-  //   labels: ["Fiat", "Stocks", "Pending"],
-  //   datasets: [
-  //     {
-  //       label: "Assets",
-  //       data: [25000, 88500, 68000],
-  //       backgroundColor: ["hotpink", "#52e635dc", "#3535e6dc"],
-  //     },
-  //   ],
-  // };
+        const stockList = userSelector.account.stockAccount.map((item) => item.ticker)
 
-  // var options = {
-  //   responsive: true,
-  //   plugins: {
-  //     legend: {
-  //       display: true,
-  //       position: "top",
-  //     },
-  //   },
-  //   scales: {
-  //     x: {
-  //       title: {
-  //         display: true,
-  //         text: "Days of the Week",
-  //       },
-  //     },
-  //     y: {
-  //       title: {
-  //         display: true,
-  //         text: "Steps",
-  //       },
-  //       beginAtZero: true,
-  //     },
-  //   },
-  // };
+        const endpoint = `${process.env.REACT_APP_SERVER_URL}/${username}/totalstocks`;
+        const totRes = await axios.post(endpoint, {...stockData,stocklist: stockList })
 
-  // var options = {
-  //   maintainAspectRatio: false,
-  //   plugins: {
-  //     Legend: true,
-  //   },
-  //   scales: {
-  //     x: {
-  //       layout: {
-  //         padding: {
-  //           left: 0, // Removes the left margin
-  //           right: 0,
-  //           top: 0,
-  //           bottom: 0,
-  //         },
-  //       },
-  //       title: {
-  //         display: true,
-  //         title: "hi",
-  //       },
-  //       display: true,
-  //       ticks: {
-  //         callback: function (value, index) {
-  //           return index === 0 ? "" : this.getLabelForValue(value);
-  //         },
-  //       },
-  //     },
-  //     y: {
-  //       layout: {
-  //         padding: {
-  //           left: 0, // Removes the left margin
-  //           right: 0,
-  //           top: 0,
-  //           bottom: 0,
-  //         },
-  //       },
-  //       title: {
-  //         display: false,
-  //         title: "hi",
-  //       },
-  //       display: true,
-  //     },
-  //   },
-  // };
+        console.log("amount TTTTT", totRes.data, stockList)
+        setTotalStockAmount(totRes.data.totalAmount)
+      
+        
+      } catch (error) {
+        
+      }
+    })()
+  },[userSelector, menuSelection])
+  
 
-  // const options = {
-  //   scales: {
-  //     x: {
-  //       title: {
-  //         display: false,
-  //         text: "Time",
-  //       },
-  //       grid: {
-  //         display: false,
-  //       },
-  //       ticks: {
-  //         maxTicksLimit: 6,
-  //         callback: function (value, index) {
-  //           // return index % 2 === 0 ? this.getLabelForValue(value) : "";
-  //           return index === 0 ? '' : this.getLabelForValue(value);
-  //         },
-  //       },
-  //     },
-  //     y: {
-  //       title: {
-  //         display: false,
-  //         text: "Price",
-  //       },
-  //       grid: {
-  //         display: false,
-  //       },
-  //     },
-  //   },
-  // };
-  // const Line1 = <Line options={options} data={linearChartData} />
+
+  const getFiatBalance = () => {
+    try {
+      return userSelector.account.fiatAccount.amount
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <div className="dashboard-holder">
@@ -224,7 +99,7 @@ const Dashboard = () => {
               <div className="asset-title">Total Balance</div>
               <div className="asset-sym-value-holder">
                 <div className="curr-sym">$</div>
-                <div className="assets-value">10000</div>
+                <div className="assets-value">{Math.floor((getFiatBalance() + totalStockAmount) * 100)/100}</div>
               </div>
             </div>
 
@@ -232,7 +107,7 @@ const Dashboard = () => {
               <div className="asset-title">Stock Balance</div>
               <div className="asset-sym-value-holder">
                 <div className="curr-sym">$</div>
-                <div className="assets-value">10000</div>
+                <div className="assets-value">{Math.floor(totalStockAmount * 100)/100}</div>
               </div>
             </div>
 
@@ -240,17 +115,11 @@ const Dashboard = () => {
               <div className="asset-title">Fiat Balance</div>
               <div className="asset-sym-value-holder">
                 <div className="curr-sym">$</div>
-                <div className="assets-value">10000</div>
+                <div className="assets-value">{Math.floor(getFiatBalance() *100)/100}</div>
               </div>
             </div>
 
-            {/* <div className="assets-card">
-              <div className="asset-title">Pending Balance</div>
-              <div className="asset-sym-value-holder">
-                <div className="curr-sym">$</div>
-                <div className="assets-value">10000</div>
-              </div>
-            </div> */}
+            
           </div>
           <div className="top-stock title-holder">
             Top Stocks
@@ -258,15 +127,28 @@ const Dashboard = () => {
           <div className=" top-stock-con h-auto bg-[white] flex flex-wrap justify-between w-full gap-x-2 gap-y-2 box-border">
             
             {userStocks.map((item, key) => {
-              const url = new URL(item.url)
-              const hostUrl = url.hostname
-              let imgLink = `https://img.logo.dev/${hostUrl.slice(4)}?greyscale=true&token=${process.env.REACT_APP_STOCK_IMG_TOKEN}`
-              imgLink = `https://img.logo.dev/${hostUrl.slice(4)}?token=${process.env.REACT_APP_STOCK_IMG_TOKEN}`
-              console.log("each logo", hostUrl, hostUrl.slice(4))
+              let imgLink = ""
+              try {
+
+                const url = new URL(item.url)
+                const hostUrl = url.hostname
+                // let imgLink = `https://img.logo.dev/${hostUrl.slice(4)}?greyscale=true&token=${process.env.REACT_APP_STOCK_IMG_TOKEN}`
+                imgLink = `https://img.logo.dev/${hostUrl.slice(4)}?token=${process.env.REACT_APP_STOCK_IMG_TOKEN}`
+              } catch (error) {
+                
+              }
+              // const url = new URL(item.url)
+              // const hostUrl = url.hostname
+              // // let imgLink = `https://img.logo.dev/${hostUrl.slice(4)}?greyscale=true&token=${process.env.REACT_APP_STOCK_IMG_TOKEN}`
+              // let imgLink = `https://img.logo.dev/${hostUrl.slice(4)}?token=${process.env.REACT_APP_STOCK_IMG_TOKEN}`
+              // // console.log("each logo", hostUrl, hostUrl.slice(4))
+              // console.log("url is", item.url)
+              
+
               // src="https://img.logo.dev/smith-wesson.com?greyscale=true&token=pk_ZJlMiU5ZSYCLHHybrbVDWg"
               return (
-                <div className="stock-card w-[30%] bg-white rounded-large  flex flex-col flex-wrap rounded-lg box-border px-2" key={key}>
-                  <div className="logo-symbol-holder box-border flex flex-wrap flex items-center justify-center bg-[#ffffff] w-[40%]">
+                <div className="stock-card w-[30%] bg-white rounded-large  flex flex-col flex-wrap rounded-lg box-border p-2 border-2"  key={key}>
+                  <div className="logo-symbol-holder box-border flex flex-wrap items-center justify-start bg-[#ffffff] w-full gap-x-1">
                     <img
                       src={imgLink}
                       alt=""
